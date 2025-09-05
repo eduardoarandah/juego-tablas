@@ -13,8 +13,6 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [progress, setProgress] = useState<GameProgress>({});
-  const [allAnimalsCollected, setAllAnimalsCollected] =
-    useState<boolean>(false);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const animals = {
@@ -28,10 +26,6 @@ function App() {
     if (saved) {
       const savedProgress = JSON.parse(saved);
       setProgress(savedProgress);
-      const completed = Object.keys(savedProgress).filter(
-        (key) => savedProgress[key],
-      ).length;
-      setAllAnimalsCollected(completed === 10);
     }
   };
 
@@ -41,10 +35,6 @@ function App() {
       JSON.stringify(newProgress),
     );
     setProgress(newProgress);
-    const completed = Object.keys(newProgress).filter(
-      (key) => newProgress[key],
-    ).length;
-    setAllAnimalsCollected(completed === 10);
   };
 
   useEffect(() => {
@@ -65,7 +55,7 @@ function App() {
         const newProgress = { ...progress, [currentTable]: true };
         saveProgress(newProgress);
         const completedTables = Object.keys(newProgress).filter(
-          (key) => newProgress[key],
+          (key) => newProgress[parseInt(key)],
         ).length;
         if (completedTables === 10) {
           setCurrentView("complete");
@@ -83,7 +73,6 @@ function App() {
   const resetGame = () => {
     localStorage.removeItem("multiplicationGameProgress");
     setProgress({});
-    setAllAnimalsCollected(false);
     setCurrentView("home");
   };
 
