@@ -42,6 +42,8 @@ volver al inicio
 
 Al completar el juego se muestra un segundo título "Has ganado todos los animalitos, felicidades!" , un unicornio y un botón para reiniciar el juego
 
+multiplicationGameProgress  
+
 {
   "1":true, 
   "2":true, 
@@ -52,7 +54,9 @@ Al completar el juego se muestra un segundo título "Has ganado todos los animal
   "7":true, 
   "8":true, 
   "9":true, 
-  "10":true 
+  "10":true,
+  "11":true,
+  "12":true 
 }
 
 ## Notas

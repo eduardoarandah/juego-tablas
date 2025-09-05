@@ -66,7 +66,7 @@ function App() {
         const completedTables = Object.keys(newProgress).filter(
           (key) => newProgress[parseInt(key)],
         ).length;
-        if (completedTables === 10) {
+        if (completedTables === 12) {
           setCurrentView("complete");
         } else {
           setCurrentView("home");
@@ -161,58 +161,72 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-orange-100 p-8 flex items-center justify-center">
-      <div className="max-w-2xl w-full">
-        <h1 className="text-4xl font-bold text-center mb-8 text-orange-800">
-          Gana todos los animalitos
-        </h1>
+    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-orange-100 p-8">
+      <div className="flex items-center  flex-col w-full h-full">
+        <div className="max-w-2xl w-full">
+          <h1 className="text-4xl font-bold text-center mb-8 text-orange-800">
+            Gana todos los animalitos
+          </h1>
 
-        {/* si tenemos todos los animalitos, mostrar el unicornio */}
-        {Object.keys(progress).length === 10 && (
-          <div className="text-center p-4 bg-gradient-to-b from-blue-100 to-green-100 my-12 rounded-lg shadow-lg">
-            <div className="text-3xl font-bold mb-8 text-purple-700">
-              Felicidades, has ganado al unicornio 😀
+          {/* si tenemos todos los animalitos, mostrar el unicornio */}
+          {Object.keys(progress).length === 12 && (
+            <div className="text-center p-4 bg-gradient-to-b from-blue-100 to-green-100 my-12 rounded-lg shadow-lg">
+              <div className="text-3xl font-bold mb-8 text-purple-700">
+                Felicidades, has ganado al unicornio 😀
+              </div>
+              <div className="text-8xl mb-8">🦄</div>
+              <button
+                onClick={resetGame}
+                className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg text-lg"
+              >
+                Reiniciar el juego
+              </button>
             </div>
-            <div className="text-8xl mb-8">🦄</div>
-            <button
-              onClick={resetGame}
-              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg text-lg"
-            >
-              Reiniciar el juego
-            </button>
-          </div>
-        )}
+          )}
 
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 justify-items-center">
-          {Array.from({ length: 10 }, (_, i) => i + 1).map((tableNumber) => (
-            <button
-              key={tableNumber}
-              onClick={() => startTable(tableNumber)}
-              className="bg-white hover:bg-gray-50 rounded-lg p-4 shadow-md transition-all hover:shadow-lg border-1 hover:border-orange-300"
-            >
-              <div className="text-lg font-semibold mb-2">
-                Tabla del {tableNumber}
-              </div>
-              <div className="text-3xl">
-                {progress[tableNumber]
-                  ? animals[tableNumber as keyof typeof animals] || "🦄"
-                  : "❓"}
-              </div>
-            </button>
-          ))}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 justify-items-center">
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((tableNumber) => (
+              <button
+                key={tableNumber}
+                onClick={() => startTable(tableNumber)}
+                className="bg-white hover:bg-gray-50 rounded-lg p-4 shadow-md transition-all hover:shadow-lg border-1 hover:border-orange-300"
+              >
+                <div className="text-lg font-semibold mb-2">
+                  Tabla del {tableNumber}
+                </div>
+                <div className="text-3xl">
+                  {progress[tableNumber]
+                    ? animals[tableNumber as keyof typeof animals] || "🦄"
+                    : "❓"}
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {Object.keys(progress).length > 0 && (
+            <div className="text-center">
+              <button
+                onClick={resetGame}
+                className="bg-red-200 hover:bg-red-300 text-red-950 font-bold py-2 px-4 rounded-lg"
+              >
+                Volver a comenzar
+              </button>
+            </div>
+          )}
         </div>
-
-        {Object.keys(progress).length > 0 && (
-          <div className="text-center">
-            <button
-              onClick={resetGame}
-              className="bg-red-200 hover:bg-red-300 text-red-950 font-bold py-2 px-4 rounded-lg"
-            >
-              Volver a comenzar
-            </button>
-          </div>
-        )}
       </div>
+
+      <footer className="text-center text-gray-600 text-sm py-4 mt-6">
+        por{" "}
+        <a
+          href="https://eduardoarandah.github.io/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-orange-600 hover:text-orange-800 underline"
+        >
+          Eduardo Aranda
+        </a>
+      </footer>
     </div>
   );
 }
