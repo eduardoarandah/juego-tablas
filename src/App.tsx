@@ -1,5 +1,5 @@
 import "./style.css";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 interface GameProgress {
   [table: number]: boolean;
@@ -15,6 +15,7 @@ function App() {
   const [progress, setProgress] = useState<GameProgress>({});
   const [allAnimalsCollected, setAllAnimalsCollected] =
     useState<boolean>(false);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const animals = {
     1: "🐰",
@@ -74,6 +75,7 @@ function App() {
       } else {
         setCurrentQuestion(currentQuestion + 1);
         setUserAnswer("");
+        setTimeout(() => inputRef.current?.focus(), 0);
       }
     }
   };
@@ -126,6 +128,7 @@ function App() {
             </h2>
 
             <input
+              ref={inputRef}
               type="number"
               value={userAnswer}
               onChange={(e) => setUserAnswer(e.target.value)}
