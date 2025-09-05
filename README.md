@@ -23,7 +23,6 @@ Tabla del 10
 
 [volver a comenzar]
 
-
 ## Tabla de multiplicar
 
 Al entrar a una tabla, nos va a hacer las 10 preguntas, por ejemplo cuanto es 4x1, 4x2, 4x3 ...
@@ -39,13 +38,10 @@ Cuánto es 4x3 ?
 
 volver al inicio
 
-
 ## Final del juego
 
 Al completar el juego se muestra un segundo título "Has ganado todos los animalitos, felicidades!" y un botón para reiniciar el juego
 
-
 ## Notas
 
 El jugador puede entrar a una tabla aunque ya la haya completado antes
-
