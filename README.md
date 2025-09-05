@@ -1,69 +1,51 @@
-# React + TypeScript + Vite
+# diseño del juego
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+El objetivo del juego es ganar todos los animalitos aprendiendo las tablas de multiplicar.
+Cada uno de los animales los ganas cuando contestas correctamente una tabla de multiplicar.
+El juego guarda en la memoria del navegador el progreso.
 
-Currently, two official plugins are available:
+## Home
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Se muestra un titulo y las tablas completadas con su animal
 
-## Expanding the ESLint configuration
+Gana todos los animalitos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Tabla del 1 🐰
+Tabla del 2 🐶
+Tabla del 3 🐹
+Tabla del 4
+Tabla del 5
+Tabla del 6
+Tabla del 7
+Tabla del 8
+Tabla del 9
+Tabla del 10
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+[volver a comenzar]
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Tabla de multiplicar
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Al entrar a una tabla, nos va a hacer las 10 preguntas, por ejemplo cuanto es 4x1, 4x2, 4x3 ...
+Cuando se responde correctaente, se pasa al numero siguiente.
+si el numero es incorrecto, no pasa al siguiente.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Ejemplo:
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Tabla del 4
+
+Cuánto es 4x3 ?
+[_____]
+
+volver al inicio
+
+
+## Final del juego
+
+Al completar el juego se muestra un segundo título "Has ganado todos los animalitos, felicidades!" y un botón para reiniciar el juego
+
+
+## Notas
+
+El jugador puede entrar a una tabla aunque ya la haya completado antes
+
