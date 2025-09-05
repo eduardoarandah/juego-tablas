@@ -40,7 +40,20 @@ volver al inicio
 
 ## Final del juego
 
-Al completar el juego se muestra un segundo título "Has ganado todos los animalitos, felicidades!" y un botón para reiniciar el juego
+Al completar el juego se muestra un segundo título "Has ganado todos los animalitos, felicidades!" , un unicornio y un botón para reiniciar el juego
+
+{
+  "1":true, 
+  "2":true, 
+  "3":true, 
+  "4":true, 
+  "5":true, 
+  "6":true, 
+  "7":true, 
+  "8":true, 
+  "9":true, 
+  "10":true 
+}
 
 ## Notas
 

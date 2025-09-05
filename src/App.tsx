@@ -19,6 +19,15 @@ function App() {
     1: "🐰",
     2: "🐶",
     3: "🐹",
+    4: "🐼",
+    5: "🐻",
+    6: "🐨",
+    7: "🐯",
+    8: "🦁",
+    9: "🐮",
+    10: "🐷",
+    11: "🦉",
+    12: "🐸",
   };
 
   const loadProgress = () => {
@@ -157,6 +166,22 @@ function App() {
         <h1 className="text-4xl font-bold text-center mb-8 text-orange-800">
           Gana todos los animalitos
         </h1>
+
+        {/* si tenemos todos los animalitos, mostrar el unicornio */}
+        {Object.keys(progress).length === 10 && (
+          <div className="text-center p-4 bg-gradient-to-b from-blue-100 to-green-100 my-12 rounded-lg shadow-lg">
+            <div className="text-3xl font-bold mb-8 text-purple-700">
+              Felicidades, has ganado al unicornio 😀
+            </div>
+            <div className="text-8xl mb-8">🦄</div>
+            <button
+              onClick={resetGame}
+              className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-6 rounded-lg text-lg"
+            >
+              Reiniciar el juego
+            </button>
+          </div>
+        )}
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-8 justify-items-center">
           {Array.from({ length: 10 }, (_, i) => i + 1).map((tableNumber) => (
