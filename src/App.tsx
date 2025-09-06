@@ -1,5 +1,8 @@
 import "./style.css";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import GameCompleteView from "./components/GameCompleteView";
+import TableGameView from "./components/TableGameView";
+import HomeView from "./components/HomeView";
 
 interface GameProgress {
   [table: number]: boolean;
@@ -13,7 +16,6 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [progress, setProgress] = useState<GameProgress>({});
-  const inputRef = useRef<HTMLInputElement>(null);
 
   const animals = {
     1: "🐰",
@@ -74,7 +76,6 @@ function App() {
       } else {
         setCurrentQuestion(currentQuestion + 1);
         setUserAnswer("");
-        setTimeout(() => inputRef.current?.focus(), 0);
       }
     }
   };
@@ -93,125 +94,34 @@ function App() {
 
   if (currentView === "complete") {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-blue-100 to-green-100 p-8 flex items-center justify-center">
-        <div className="max-w-2xl w-full text-center">
-          <h1 className="text-4xl font-bold text-green-600 mb-8">
-            ¡Has ganado todos los animalitos, felicidades!
-          </h1>
-          <div className="text-6xl mb-8">
-            {Object.values(animals).join(" ")}
-          </div>
-          <button
-            onClick={resetGame}
-            className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg"
-          >
-            Reiniciar el juego
-          </button>
-        </div>
-      </div>
+      <GameCompleteView
+        animals={animals}
+        onResetGame={resetGame}
+      />
     );
   }
 
   if (currentView === "table") {
     return (
-      <div className="min-h-screen bg-gradient-to-b from-purple-100 to-pink-100 p-8 flex items-center justify-center">
-        <div className="max-w-2xl w-full">
-          <h1 className="text-3xl font-bold text-center mb-8 text-purple-800">
-            Tabla del {currentTable}
-          </h1>
-
-          <div className="bg-white rounded-lg shadow-lg p-8 text-center">
-            <h2 className="text-2xl mb-6 text-gray-800">
-              ¿Cuánto es {currentTable} × {currentQuestion}?
-            </h2>
-
-            <input
-              ref={inputRef}
-              type="number"
-              value={userAnswer}
-              onChange={(e) => setUserAnswer(e.target.value)}
-              onKeyPress={handleKeyPress}
-              className="border-1 border-gray-300 rounded-lg px-4 py-2 text-xl text-center w-32 mb-6"
-              placeholder="?"
-              autoFocus
-            />
-
-            <div className="flex justify-center gap-4">
-              <button
-                onClick={checkAnswer}
-                disabled={!userAnswer}
-                className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg"
-              >
-                Responder
-              </button>
-            </div>
-          </div>
-
-          <div className="text-center">
-            <button
-              onClick={() => setCurrentView("home")}
-              className="mt-6 text-purple-600 hover:text-purple-800 no-underline"
-            >
-              Volver al inicio
-            </button>
-          </div>
-        </div>
-      </div>
+      <TableGameView
+        currentTable={currentTable}
+        currentQuestion={currentQuestion}
+        userAnswer={userAnswer}
+        onAnswerChange={setUserAnswer}
+        onCheckAnswer={checkAnswer}
+        onBackToHome={() => setCurrentView("home")}
+        onKeyPress={handleKeyPress}
+      />
     );
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-orange-100 p-8">
-      <div className="flex items-center  flex-col w-full h-full">
-        <div className="max-w-2xl w-full">
-          <h1 className="text-4xl font-bold text-center mb-8 text-orange-800">
-            Gana todos los animalitos
-          </h1>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 justify-items-center">
-            {Array.from({ length: 12 }, (_, i) => i + 1).map((tableNumber) => (
-              <button
-                key={tableNumber}
-                onClick={() => startTable(tableNumber)}
-                className="bg-white hover:bg-gray-50 rounded-lg p-4 shadow-md transition-all hover:shadow-lg border-1 hover:border-orange-300"
-              >
-                <div className="text-lg font-semibold mb-2">
-                  Tabla del {tableNumber}
-                </div>
-                <div className="text-3xl">
-                  {progress[tableNumber]
-                    ? animals[tableNumber as keyof typeof animals] || "🦄"
-                    : "❓"}
-                </div>
-              </button>
-            ))}
-          </div>
-
-          {Object.keys(progress).length > 0 && (
-            <div className="text-center">
-              <button
-                onClick={resetGame}
-                className="bg-red-200 hover:bg-red-300 text-red-950 font-bold py-2 px-4 rounded-lg"
-              >
-                Volver a comenzar
-              </button>
-            </div>
-          )}
-        </div>
-      </div>
-
-      <footer className="text-center text-gray-600 text-sm py-4 mt-6">
-        por{" "}
-        <a
-          href="https://eduardoarandah.github.io/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-orange-600 hover:text-orange-800 underline"
-        >
-          Eduardo Aranda
-        </a>
-      </footer>
-    </div>
+    <HomeView
+      progress={progress}
+      animals={animals}
+      onStartTable={startTable}
+      onResetGame={resetGame}
+    />
   );
 }
 
