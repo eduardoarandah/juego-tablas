@@ -16,6 +16,7 @@ function App() {
   const [currentQuestion, setCurrentQuestion] = useState<number>(1);
   const [userAnswer, setUserAnswer] = useState<string>("");
   const [progress, setProgress] = useState<GameProgress>({});
+  const [wins, setWins] = useState<number>(0);
 
   const animals = {
     1: "🐰",
@@ -32,11 +33,49 @@ function App() {
     12: "🐸",
   };
 
+  const prizes = [
+    "🐶",
+    "🐱",
+    "🐹",
+    "🐰",
+    "🦁",
+    "🐯",
+    "🐻",
+    "🐸",
+    "🦊",
+    "🐒",
+    "🐔",
+    "🐼",
+    "🦧",
+    "🦖",
+    "🦒",
+    "🐘",
+    "🐳",
+    "🦌",
+    "🦭",
+    "🦕",
+    "🐙",
+    "🐬",
+    "🦀",
+    "🐥",
+    "🐢",
+    "🦑",
+    "🦈",
+    "🪼",
+    "🐲",
+    "🦄",
+  ];
+
   const loadProgress = () => {
     const saved = localStorage.getItem("multiplicationGameProgress");
     if (saved) {
       const savedProgress = JSON.parse(saved);
       setProgress(savedProgress);
+    }
+
+    const savedWins = localStorage.getItem("wins");
+    if (savedWins) {
+      setWins(parseInt(savedWins));
     }
   };
 
@@ -69,6 +108,14 @@ function App() {
           (key) => newProgress[parseInt(key)],
         ).length;
         if (completedTables === 12) {
+          const newWins = wins + 1;
+          // guardar el nuevo numero de victorias
+          setWins(newWins);
+          localStorage.setItem("wins", newWins.toString());
+          // quitar el progreso
+          localStorage.removeItem("multiplicationGameProgress");
+          setProgress({});
+          // mostrar pantalla de victoria
           setCurrentView("complete");
         } else {
           setCurrentView("home");
@@ -80,12 +127,6 @@ function App() {
     }
   };
 
-  const resetGame = () => {
-    localStorage.removeItem("multiplicationGameProgress");
-    setProgress({});
-    setCurrentView("home");
-  };
-
   const handleKeyPress = (e: React.KeyboardEvent) => {
     if (e.key === "Enter") {
       checkAnswer();
@@ -95,8 +136,9 @@ function App() {
   if (currentView === "complete") {
     return (
       <GameCompleteView
-        animals={animals}
-        onResetGame={resetGame}
+        wins={wins}
+        prizes={prizes}
+        playAgainClick={() => setCurrentView("home")}
       />
     );
   }
@@ -119,8 +161,9 @@ function App() {
     <HomeView
       progress={progress}
       animals={animals}
+      wins={wins}
+      prizes={prizes}
       onStartTable={startTable}
-      onResetGame={resetGame}
     />
   );
 }

@@ -1,5 +1,6 @@
 import TableButton from "./TableButton";
 import Footer from "./Footer";
+import PrizesList from "./PrizesList";
 
 interface GameProgress {
   [table: number]: boolean;
@@ -8,11 +9,18 @@ interface GameProgress {
 interface HomeViewProps {
   progress: GameProgress;
   animals: { [key: number]: string };
+  wins: number;
+  prizes: string[];
   onStartTable: (tableNumber: number) => void;
-  onResetGame: () => void;
 }
 
-export default function HomeView({ progress, animals, onStartTable, onResetGame }: HomeViewProps) {
+export default function HomeView({
+  progress,
+  animals,
+  wins,
+  prizes,
+  onStartTable,
+}: HomeViewProps) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-yellow-100 to-orange-100 p-8">
       <div className="flex items-center  flex-col w-full h-full">
@@ -33,16 +41,7 @@ export default function HomeView({ progress, animals, onStartTable, onResetGame 
             ))}
           </div>
 
-          {Object.keys(progress).length > 0 && (
-            <div className="text-center">
-              <button
-                onClick={onResetGame}
-                className="bg-red-200 hover:bg-red-300 text-red-950 font-bold py-2 px-4 rounded-lg"
-              >
-                Volver a comenzar
-              </button>
-            </div>
-          )}
+          <PrizesList wins={wins} prizes={prizes} />
         </div>
       </div>
 
@@ -50,3 +49,4 @@ export default function HomeView({ progress, animals, onStartTable, onResetGame 
     </div>
   );
 }
+
