@@ -3,6 +3,7 @@ import { useRef, useEffect } from "react";
 interface TableGameViewProps {
   currentTable: number;
   currentQuestion: number;
+  randomMultiplier: number; // Número aleatorio para la multiplicación
   userAnswer: string;
   onAnswerChange: (value: string) => void;
   onCheckAnswer: () => void;
@@ -13,6 +14,7 @@ interface TableGameViewProps {
 export default function TableGameView({
   currentTable,
   currentQuestion,
+  randomMultiplier,
   userAnswer,
   onAnswerChange,
   onCheckAnswer,
@@ -21,6 +23,7 @@ export default function TableGameView({
 }: TableGameViewProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // Enfocar el input cuando cambie la pregunta
   useEffect(() => {
     inputRef.current?.focus();
   }, [currentQuestion]);
@@ -28,15 +31,19 @@ export default function TableGameView({
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-100 to-pink-100 p-8 flex items-center justify-center">
       <div className="max-w-2xl w-full">
+        {/* Título de la tabla actual */}
         <h1 className="text-3xl font-bold text-center mb-8 text-purple-800">
           Tabla del {currentTable}
         </h1>
 
+        {/* Tarjeta principal con la pregunta */}
         <div className="bg-white rounded-lg shadow-lg p-8 text-center">
+          {/* Pregunta de multiplicación con número aleatorio */}
           <h2 className="text-2xl mb-6 text-gray-800">
-            ¿Cuánto es {currentTable} × {currentQuestion}?
+            ¿Cuánto es {currentTable} × {randomMultiplier}?
           </h2>
 
+          {/* Input para la respuesta del usuario */}
           <input
             ref={inputRef}
             type="number"
@@ -48,21 +55,23 @@ export default function TableGameView({
             autoFocus
           />
 
+          {/* Botón para enviar respuesta */}
           <div className="flex justify-center gap-4">
             <button
               onClick={onCheckAnswer}
               disabled={!userAnswer}
-              className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg"
+              className="bg-purple-500 hover:bg-purple-600 text-white font-bold py-2 px-4 rounded-lg disabled:opacity-50 disabled:cursor-not-allowed"
             >
               Responder
             </button>
           </div>
         </div>
 
+        {/* Botón para regresar al inicio */}
         <div className="text-center">
           <button
             onClick={onBackToHome}
-            className="mt-6 text-purple-600 hover:text-purple-800 no-underline"
+            className="mt-6 text-purple-600 hover:text-purple-800 no-underline transition-colors"
           >
             Volver al inicio
           </button>
@@ -71,3 +80,4 @@ export default function TableGameView({
     </div>
   );
 }
+

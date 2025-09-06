@@ -72,9 +72,8 @@ Si la cantidad de victorias excede a los premios, repetir el último premio
 ```js
 // agregar progreso
 localStorage.setItem(
-  "multiplicationGameProgress",
+  "progress",
   JSON.stringify({
-    1: true,
     2: true,
     3: true,
     4: true,
