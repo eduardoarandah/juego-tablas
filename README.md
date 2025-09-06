@@ -3,10 +3,17 @@
 El objetivo del juego es ganar todos los animalitos aprendiendo las tablas de multiplicar.
 Cada uno de los animales los ganas cuando contestas correctamente una tabla de multiplicar.
 El juego guarda en la memoria del navegador el progreso.
+Cuando se responde correctamente, incrementa en memoria el numero de victorias
 
 ## Home
 
-Se muestra un titulo y las tablas completadas con su animal
+Se muestra: 
+
+- un titulo  "Gana todos los animalitos"
+- las tablas completadas con su animal
+- la lista de premios ganados
+
+ejemplo:
 
 Gana todos los animalitos
 
@@ -21,12 +28,14 @@ Tabla del 8
 Tabla del 9
 Tabla del 10
 
-[volver a comenzar]
+Premios:
+
+🐶🐕🦮🐕‍🦺🐩🐱🐈🐈‍⬛🐵🐒
 
 ## Tabla de multiplicar
 
 Al entrar a una tabla, nos va a hacer las 10 preguntas, por ejemplo cuanto es 4x1, 4x2, 4x3 ...
-Cuando se responde correctaente, se pasa al numero siguiente.
+Cuando se responde correctamente, se pasa al numero siguiente.
 si el numero es incorrecto, no pasa al siguiente.
 
 Ejemplo:
@@ -40,8 +49,17 @@ volver al inicio
 
 ## Final del juego
 
-Al completar el juego se muestra un segundo título "Has ganado todos los animalitos, felicidades!" , un unicornio y un botón para reiniciar el juego
+Al completar el juego se muestra:
 
+- El titulo "Felicidades! has ganado a: 
+- El animalito siguiente de la lista de premios dependiendo de la cantidad de victorias. lista de premios: 🐶🐕🦮🐕‍🦺🐩🐱🐈🐈‍⬛🐵🐒🦍🦧🦁🐯🐅🐆🐴🐎🦌🦙🦒🐘🦏🐳🐋🐬🦭🦕🦖🐙🦀🦑🐠🐟🐡🦈🪼🐲🦄
+- un botón para "volver a jugar". Al dar click en "volver a jugar" se resetea el progreso y se incrementa en memoria la cantidad de victorias.
+
+Notas:
+
+Si la cantidad de victorias excede a los premios, repetir el último premio 🦄
+
+ejemplo memoria: 
 multiplicationGameProgress  
 
 {
@@ -59,6 +77,4 @@ multiplicationGameProgress
   "12":true 
 }
 
-## Notas
-
-El jugador puede entrar a una tabla aunque ya la haya completado antes
+wins: 3
