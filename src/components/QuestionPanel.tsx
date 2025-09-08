@@ -120,8 +120,8 @@ export function QuestionPanel({
         {/* Tarjeta principal con la pregunta */}
         <div className="bg-white rounded-lg shadow-lg p-8 text-center">
           {/* Pregunta de multiplicación */}
-          <h2 className="text-2xl mb-8 text-gray-800">
-            ¿Cuánto es {tableToPlay} × {randomMultiplier}?
+          <h2 className="text-6xl mb-8 text-gray-800">
+            {tableToPlay} × {randomMultiplier}
           </h2>
 
           {/* Botones de opciones múltiples */}
