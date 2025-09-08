@@ -26,7 +26,7 @@ export default function HomeView({
       <div className="flex items-center  flex-col w-full h-full">
         <div className="max-w-2xl w-full">
           <h1 className="text-4xl font-bold text-center mb-8 text-orange-800">
-            Gana todos los animalitos
+            Gana todos los animalitos 😀
           </h1>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 justify-items-center">
@@ -49,4 +49,3 @@ export default function HomeView({
     </div>
   );
 }
-

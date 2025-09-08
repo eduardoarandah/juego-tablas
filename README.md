@@ -89,5 +89,5 @@ localStorage.setItem(
 );
 
 // establecer victorias
-localStorage.setItem("wins", 31);
+localStorage.setItem("wins", 10);
 ```

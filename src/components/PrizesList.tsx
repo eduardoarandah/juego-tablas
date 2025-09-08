@@ -6,6 +6,15 @@ interface PrizesListProps {
 export default function PrizesList({ wins, prizes }: PrizesListProps) {
   if (wins === 0) return null;
 
+  const animations = [
+    "wobble-1",
+    "wobble-2",
+    "wobble-3",
+    "wobble-4",
+    "wobble-5",
+    "wobble-6",
+  ];
+
   const wonPrizes = [];
   for (let i = 0; i < wins; i++) {
     if (i < prizes.length) {
@@ -22,7 +31,10 @@ export default function PrizesList({ wins, prizes }: PrizesListProps) {
       </h2>
       <div className="text-5xl flex flex-wrap justify-center gap-5">
         {wonPrizes.map((prize, i) => (
-          <div key={i} className="text-center">
+          <div
+            key={i}
+            className={`text-center prize-character ${animations[i % animations.length]}`}
+          >
             {prize}
           </div>
         ))}
