@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 
-interface TableGameViewProps {
+interface QuestionPanelProps {
   currentTable: number;
   currentQuestion: number;
   randomMultiplier: number; // Número aleatorio para la multiplicación
@@ -11,7 +11,7 @@ interface TableGameViewProps {
   onKeyPress: (e: React.KeyboardEvent) => void;
 }
 
-export default function TableGameView({
+export function QuestionPanel({
   currentTable,
   currentQuestion,
   randomMultiplier,
@@ -20,7 +20,7 @@ export default function TableGameView({
   onCheckAnswer,
   onBackToHome,
   onKeyPress,
-}: TableGameViewProps) {
+}: QuestionPanelProps) {
   const inputRef = useRef<HTMLInputElement>(null);
 
   // Enfocar el input cuando cambie la pregunta
@@ -80,4 +80,3 @@ export default function TableGameView({
     </div>
   );
 }
-

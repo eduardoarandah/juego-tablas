@@ -1,7 +1,7 @@
 import "./style.css";
 import { useState, useEffect } from "react";
 import GameCompleteView from "./components/GameCompleteView";
-import TableGameView from "./components/TableGameView";
+import { QuestionPanel } from "./components/QuestionPanel";
 import HomeView from "./components/HomeView";
 
 interface GameProgress {
@@ -174,7 +174,7 @@ function App() {
   // Renderizar vista de tabla de multiplicar
   if (currentView === "table") {
     return (
-      <TableGameView
+      <QuestionPanel
         currentTable={currentTable}
         currentQuestion={currentQuestion}
         randomMultiplier={randomMultiplier}
