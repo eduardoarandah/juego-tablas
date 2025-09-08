@@ -9,7 +9,7 @@ export default function TableButton({ tableNumber, isCompleted, animal, onStartT
   return (
     <button
       onClick={() => onStartTable(tableNumber)}
-      className="bg-white hover:bg-gray-50 rounded-lg p-4 shadow-md transition-all hover:shadow-lg border-1 hover:border-orange-300"
+      className="bg-white hover:bg-gray-50 rounded-lg p-4 shadow-md transition-all hover:shadow-lg border-1 hover:border-orange-300 cursor-pointer"
     >
       <div className="text-lg font-semibold mb-2">
         Tabla del {tableNumber}

@@ -18,7 +18,7 @@ export default function GameCompleteView({ wins, prizes, playAgainClick }: GameC
         </div>
         <button
           onClick={playAgainClick}
-          className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg"
+          className="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-lg cursor-pointer"
         >
           Volver a jugar
         </button>
