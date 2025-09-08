@@ -117,6 +117,14 @@ export function QuestionPanel({
           Tabla del {tableToPlay}
         </h1>
 
+        <div className="text-center text-xl text-gray-500 mb-8">
+          Nivel:
+          {getDifficultyLevel() === 0 ? ` Regalado 😸` : ""}
+          {getDifficultyLevel() === 1 ? ` Fácil 😺` : ""}
+          {getDifficultyLevel() === 2 ? ` Medio 🙊` : ""}
+          {getDifficultyLevel() === 3 ? ` Sorprendente 😻` : ""}
+        </div>
+
         {/* Tarjeta principal con la pregunta */}
         <div className="bg-white rounded-lg shadow-lg p-8 text-center">
           {/* Pregunta de multiplicación */}
